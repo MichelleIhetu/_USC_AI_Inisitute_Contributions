@@ -1,0 +1,76 @@
+
+{
+
+"amnioacid": {
+    "class": "Code.Agents.codon.amnio_acid_converter.agents.sequential.SequentialAgent",
+    "dependcies": {
+        "biopython":"Code.Assets.Tools.libraries.biopython.Biopython",
+        "kwargs" : {"imported": true}
+    },
+    "sequence_match": {
+        "class": "Code.Assets.Tools.functions.sequences.sequence_match",
+        "kwargs" : {"match_sequence":true}
+    }
+    },
+
+    "Chemical_Structure": {
+        "class" : "Code.Agents.visuals.chemistry.sequential.SequentialAgent",
+        "dependcies" : {
+        "chimeraX":"Code.Assets.Tools.Externals.APIs.chimeraX",
+        "kwargs": {"imported": true,
+        "chimeraX":true},
+        
+        "Hydrogen Bonds": "Code.Assets.Tools.Visuals.Chemistry.Hydrogen_Bonds",
+        "kwargs": { "chimeraX": true, "hbonds":true},
+
+        "Hydrophobic_Area": "Code.Assets.Tools.Visuals.Chemistry.Water_Affinity.Hydrophobic",
+        "kwargs": {"chimeraX": true, "setup": "preset apply int 3", "mlp_command": "red" },
+
+        
+        "Hydrophillic_Area": "Code.Assets.Tools.Visuals.Chemistry.Water_Affinity.Hydrophillic_Area",
+        "kwargs": {"chimeraX": true, "setup":"preset apply int 3", "mlp_command":"blue"},
+
+        "Skeltal_Structure": "Code.Assets.Tools.Extetrnals.Chemistry.Other_Bonds",
+        "kwargs": { "hbonds": true, "atoms": "ball and stick"}
+
+        },
+        "Subunit": "Code.Assets.Tools.Externals.APIs.SCOP",
+        "kwargs": {"chimeraX":true, "amnioacid":true, "API": "domains/:scop_id"}
+         
+        },
+
+    "Functional Domain Visiualizer": {
+        "class": "Code.Agents.codon.amnio_acid_converter.agents.aggergate.AggergateAgent",
+        "dependcies": {
+        "Chemical_Structure":"Code.Agents.visuals.chemistry.sequential.SequentialAgent",
+        "amnioacid": "Code.Agents.codon.amnio_acid_converter.agents.sequential.SequentialAgent",
+
+        "Visuals": "Code.Assets.Tools.Extetrnals.Chemistry.View",
+        "kwargs":{"Domanin ID": "domains/:scop_id" ,"Command": "open domain_id", "View": "Sequence Viewer", "Action":"Color"}
+        }
+
+    },
+
+    "Mutation Spotter" : {
+        "class": "Code.Agents.visuals.chemistry.branched.BranchedAgent",
+        "dependcies": {
+        
+            "Chemical_Structure":"Code.Agents.visuals.chemistry.sequential.SequentialAgent",
+            "amnioacid":"Code.Agents.codon.amnio_acid_converter.agents.sequential.SequentialAgent",
+
+            "Spot": "Code.Assets.Tools.Extetrnals.Chemistry.View.mutation",
+            "kwargs":{"Command": "muationscores", "matchmaker":"core.commands [data_file] [options]", "info": "info residesues"}
+
+
+            
+        }
+    }
+
+
+
+        }
+    
+        
+    
+
+
