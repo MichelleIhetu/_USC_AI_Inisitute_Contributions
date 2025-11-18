@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "registry_type": "agent_registry",
+    "compatible_protocols": ["a2a", "mcp"],
+    "description": "These are the input and output streams of my AlphaFold agents. 
+    The goal for this workflow is to view all the different levels of protein complexity in 
+    order for research scientist to have a better estimation  of disordered regions of proteins."
+    
+  },
+
+  "global_protocols": ["a2a", "mcp"],
+  "agents": [
+    {
+      "id": "Primary Structure Agent",
+      "name": "amnio acid agent",
+      "description": "Retrives a codon sequence from SCOP database and match it amnio acids
+      to build a protein primary structure - polypeptide.",
+      "capabilities": ["retrieval", "information matching"],
+      "input_data_streams": {
+        "mandatory": ["amnio acid sequence", "biopython"],
+        "optional": ["alphafold datasets"]
+      },
+      "output_data_streams": {
+        "mandatory": ["polypeptide sequence"],
+        "optional": ["confidence mean score pLDDT score"]
+      }
+    },
+
+    {
+        "id": "Secondary Structure",
+        "name": "chemical structure agent",
+        "description": "Visualize chemical structures that are key to a protein folding",
+        "capabilities": ["Visualizer", "information matching"],
+        "input_data_streams": {
+            "mandatory":["ChimeraX", "Hydrogen bond tool", "molecule display toolbar", "backbone trace"],
+            "optional":[]
+        },
+        
+        "output_data_streams": {
+            "mandatory":["Subunit visuals", "Hydrogen bonds", "Hydrophobic areas", 
+        "Hydrophillic areas"],
+            "optional":["Skeletal Structure"]
+        }    
+    },
+
+    {
+        "id": "Teritary Structure",
+        "name": "Functional Domain Visualizer",
+        "description": "Show a close up view of a protein domain while showing its function and identity",
+        "capabilities": ["Zoom", "function calling", "Identifier"],
+        "input_data_streams": {
+            "mandatory": [""]
+        }
+
+    }
+
+  ]
+}
