@@ -39,27 +39,34 @@
          
         },
 
-    "Functional Domain Visiualizer": {
+    "Functional_Domain_Visiualizer": {
         "class": "Code.Agents.codon.amnio_acid_converter.agents.aggergate.AggergateAgent",
         "dependcies": {
         "Chemical_Structure":"Code.Agents.visuals.chemistry.sequential.SequentialAgent",
         "amnioacid": "Code.Agents.codon.amnio_acid_converter.agents.sequential.SequentialAgent",
 
-        "Visuals": "Code.Assets.Tools.Extetrnals.Chemistry.View",
-        "kwargs":{"Domanin ID": "domains/:scop_id" ,"Command": "open domain_id", "View": "Sequence Viewer", "Action":"Color"}
+        "Domain_ID": "Code.Assets.Tools.Extetrnals.Chemistry.View.Domain",
+        "kwargs":{"Domanin ID": "domains/:scop_id" ,"Command": "open domain_id", "View": "Tools/Sequence/Sequence", "Color":"pae_domain"},
+
+        "Domain_function": "Code.Assets.Tools.Externals.Chemistry.View.Domain.functions",
+        "kwargs": {"Domanin ID":"domains/:scop_id", "Structure Analysis": "Tools/Structure Analysis/Similar Structure", "Sequence Viewer":"Tools/Sequence/Sequence", "Feature Viewer":"Tools/Sequence/Sequence/Molecule Display"},
+         
+        "Zoom": "Code.Assets.Tools.Externals.Chemistry.View.Domain.functions",
+        "kwargs" : {"Zoom In": "zoom", "Zoom out": "zoom 0.75"}
+
         }
 
     },
 
-    "Mutation Spotter" : {
+    "Mutation_Spotter" : {
         "class": "Code.Agents.visuals.chemistry.branched.BranchedAgent",
         "dependcies": {
         
             "Chemical_Structure":"Code.Agents.visuals.chemistry.sequential.SequentialAgent",
             "amnioacid":"Code.Agents.codon.amnio_acid_converter.agents.sequential.SequentialAgent",
 
-            "Spot": "Code.Assets.Tools.Extetrnals.Chemistry.View.mutation",
-            "kwargs":{"Command": "muationscores", "matchmaker":"core.commands [data_file] [options]", "info": "info residesues"}
+            "Mutation": "Code.Assets.Tools.Extetrnals.Chemistry.View.mutation",
+            "kwargs":{"Command": "muationscores", "matchmaker":"core.commands [data_file] [options]", "info": "info residesues", "Color":"pae_domain"}
 
 
             
